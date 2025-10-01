@@ -6,7 +6,8 @@ export const useMovieContext = () => useContext(MovieContext)
 
 export const MovieProvider = ({children}) => {
     const[favourites, setFavourites] = useState([])
-
+   
+    //To get the fav movies stored in local strorage when page loads for 1st time.
     useEffect(()=>{
         const storedFavs = localStorage.getItem("favourites")
 
@@ -18,7 +19,7 @@ export const MovieProvider = ({children}) => {
      },[favourites]);
 
      const addToFavourites = (movie) => {
-        setFavourites(prev => [...prev, movie])
+        setFavourites((prev)      => [...prev, movie])
      }
 
      const removeFromFavourites = (movieId) => {
