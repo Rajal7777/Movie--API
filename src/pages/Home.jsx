@@ -10,7 +10,7 @@ function Home() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadPopularMOvies = async () => {
+    const loadPopularMovies = async () => {
           try {
            const popularMovies = await getPopularMovies();
             setMovies(popularMovies)
@@ -20,7 +20,7 @@ function Home() {
           }
           finally{ setLoading(false)}
     }
-    loadPopularMOvies()
+    loadPopularMovies()
   },[])
 
   const handleSubmit = async (e) => {
@@ -50,7 +50,7 @@ function Home() {
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
           placeholder="Search for movie..."
-          className="Search-input"
+          className="search-input"
         />
         <button type="submit" className="search-btn">
           Search
@@ -62,7 +62,7 @@ function Home() {
       {loading? (<div className="loading">loading...</div>):
         (<div className="movie-grid">
           {movies.map((movie) => (
-            movie.title.toLocaleLowerCase().startsWith(searchQuery) &&
+            movie.title.toLocaleLowerCase().startsWith(searchQuery.toLocaleLowerCase()) &&
             <MovieCard movie={movie} key={movie.id} />
           ))}
         </div>)
